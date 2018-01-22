@@ -138,9 +138,9 @@ int executeCutpurse(int currentPlayer, struct gameState *state, int handPos);
 /* Executes the effect of the cutpurse card when played */
 
 int executeAdventurer(int currentPlayer, struct gameState *state, int drawntreasure, int temphand[], int z, int cardDrawn);
-/* Executes the effect of the cutpurse card when played */
+/* Executes the effect of the adventurer card when played */
 
 int executeSmithy(int currentPlayer, struct gameState *state, int handPos);
-/* Executes the effect of the cutpurse card when played */
+/* Executes the effect of the smithy card when played */
 
 #endif
