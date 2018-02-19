@@ -1,9 +1,12 @@
-Name: Caleb Sherer
+Name: Caleb Sherer 
 ONID: shererc
-Assignment: Assignment 3 
-Description: Unit tests 1-4 and cardtests 1-4
 
+Assignment 4 
+Description: randomtestcard1.c randomtestcard2.c randomtestadventurer.c These files randomly test the Smithy, Adventurer, and Feast cards
 
-Run this program by typing "make all unittestresults.out" into the command line. This will compile and execute
-All of the unit tests and card tests. The resulting output will sent to the unittestresults.out file. This
-is the compiled results of the unit tests as well as the gcov coverate statistics.
+MAKEFILE: rules have been implemented to run randomtestcard1.out randomtestcard2.out randomtestadventurer.out.
+To execute these, run "Make all randomtest[x].out" where [x] is card1,card1, or adventurer which will produce the .out files for analysis
+Also note, be sure to run "make clean" between each .out file. This will prevent overlap between the tests.
+
+Thanks,
+Caleb Sherer
