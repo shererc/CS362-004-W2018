@@ -1,0 +1,50 @@
+Name: Caleb Sherer
+Due Date: 03/04/2018
+Class: CS362-400
+
+	The two bugs that I will be analyzing from the ones listed above are the smithy and adventurer bugs. I chose these two bugs because, since these two were required, 
+it was the two that overlapped in Derek’s refactored code and my tests. The bugs that I found were, smithy did not draw the right number of cards and adventurer did 
+not draw the correct number of treasure cards. The method that I used to analyze both of these cards was similar to the progression of assignments over the weeks. 
+I first started by running the cardtests on these functions, then running the random tests. I did the unit tests first because the unit tests gave me more 
+information about what was happening with the bugs and tested the basic functionality of the cards. I then progressed to random testing so that I could catch some of 
+the edge cases. This resulted in some interesting findings in the random adventurer tests.
+
+	First, I looked at the smithy card. As previously discussed, I first started with the cardtests to analyze the basic card functionality before trying to find 
+the edge cases. This card has a simple effect of drawing three cards after the user has played it. Because of this, I was able to get a lot of valuable information 
+from the basic unit test. The major bug that was obvious from just the unit test was the fact that the smithy card did not draw the correct number of cards. 
+Because of my print statements, I was able to see exactly what the issue was. I ran the test multiple times, recompiling between each test to 
+reinitiate a new gamestate, and consistently, the number of cards was one less than the number of cards that the player should have. Since the 
+smithy card is only tested once per run of the unit test, we know that player 1’s hand initialized with 5 cards. After smithy is played, the player has only six cards 
+in his hand. Since we started with 5 cards, and draw 3 to give us 8, then we discard the smithy, this will give us 7 cards. Thus, we know that not enough cards were 
+drawn.
+
+
+	After running the cardtest program on the smithy card, I ran the randomtest program in an attempt to find some edge cases that cause the smithy card to not 
+function properly. However, after running the tests multiple times, the only bug that was found in the smithy card was that the correct number of cards were not 
+drawn. This bug was found to happen in every one of the 1000 random tests run on it. This compliments the bug found by the cardtest test. With the data from both of 
+these tests, I was able to conclude that the issue was that the card was drawing 2 cards instead of 3. After finding what the bug was, the next step is to look in the 
+code and see if there is a cause for this bug. The method I used for analyzing the code was by running it through eclipse and the GNU compiler. Through analysis of 
+the code, it was obvious that the counter used to draw the cards was set to 2 instead of 3.
+
+	The second major bug that I will be analyzing was one that was found in the adventurer functionality. Similarly, to the testing of the smithy card, I started 
+with the cardtest program to test the core functionality of the adventurer function. By running the cardtest test first, I was looking for specific flaws in the card 
+as a pose to edge cases that could arise from specific situations. After running the cardtest on the function, there was one obvious bug that the correct number of 
+treasure cards were not gained by the user. The user did not gain the correct number of treasure cards. After running the card test a number of 
+times, compiling in between tests to get a new gamestate, it was apparent that every time the test was run, the number of treasure cards gained was one less than it 
+should have been. Another bug that was found was that the adventurer card was not discarded from the hand after it was played by the user. This bug is much more 
+straight forward and was shown to be present in every test.
+
+	Once I was confident in the presence of a bug that consistently draws 1 fewer treasure cards than it should, I implemented the randomtest. Unsurprisingly, 
+the randomtest of the adventurer card complimented the cardtest. The test that checks that the user received the treasure cards failed in every random test.  
+Since both tests were saying the same thing, I was confident in the fact that there was a bug in the card. The random test also picked up the fact that the adventurer 
+card was never discarded from the player’s hand, similar to the cardtest test. At this point, I took a similar path to that of the smithy card. I ran the code through 
+eclipse IDE and was able to debug the function. 
+
+	The results show that the treasure count only counts to one and not 2. I also noticed that in the code, the discardCard code was never 
+called on the adventurer card. While I was going through the code I also noticed another bug that was present in the card. The bug that was found was that the embargo 
+card was counted as a treasure card. Because neither of my tests specifically picked up this bug, I did some research as to why this occurred. What I discovered was 
+that since not enough treasure cards were gained in the first place (1 instead of 2) then this case was never hit. Both of the tests gave the information that not 
+enough treasure cards were gained. This means that even if an embargo was drawn, it would still give the feedback that not enough treasure cards were drawn. I also 
+discovered that if in this assignment we were fixing our teammates code (it is instructed in the assignment that we should not change the code) the second round of 
+testing would have caught this case. If the treasure counter was fixed, and I reran the tests, the second time running the random tests would have caught this edge 
+case in one of the 1000 tests. I know this is the case because in my Assignment 4, I had a similar bug introduced to the adventurer card, and it was found.
